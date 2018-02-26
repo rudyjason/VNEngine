@@ -2,3 +2,5 @@
 \.vs
 
 VNEngine/obj/Debug/
+
+packages/

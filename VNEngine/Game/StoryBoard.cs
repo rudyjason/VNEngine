@@ -6,8 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VNEngine.Engine;
 
-namespace VNENgine
+namespace VNEngine
 {
 	public class StoryBoard : GameObject
 	{
@@ -53,20 +54,29 @@ namespace VNENgine
 
 		public void TellStory()
 		{
-			if(storyTimer.ElapsedMilliseconds > Settings.STORY_COOLDOWN) {
+			if (storyTimer.ElapsedMilliseconds > 1000)
+			{
 				canContinueStory = true;
 				storyTimer.Reset();
 			}
-			if(canContinueStory)
+
+			if (canContinueStory)
 			{
-				if(currentStoryIndex < fullStory.Count - 1)
+				if (currentStoryIndex < fullStory.Count - 1)
 				{
 					currentStoryIndex++;
 					canContinueStory = false;
 					storyTimer.Start();
-				} else {
+				}
+				else
+				{
 					Debug.WriteLine("STORY OVER");
 				}
+			} 
+			else
+			{
+				canContinueStory = true;
+				storyTimer.Reset();
 			}
 		}
 
