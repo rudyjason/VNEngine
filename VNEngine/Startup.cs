@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VNEngine.Engine;
 
 namespace VNEngine
 {
@@ -17,7 +18,7 @@ namespace VNEngine
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			MainForm form = new MainForm();
-			Engine engine = new Engine(form);
+			EngineControl engine = new EngineControl(form);
 			//Game testGame = new Game(engine);
 			Novel testNovel = new Novel(engine);
 			Application.Run(form);

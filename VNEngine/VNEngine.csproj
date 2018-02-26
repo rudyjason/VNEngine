@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine\EngineControl.cs" />
     <Compile Include="Engine\GameObject.cs" />
     <Compile Include="Engine\MainForm.cs">
       <SubType>Form</SubType>

@@ -6,15 +6,16 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VNEngine.Engine;
 
 namespace VNEngine
 {
 	public class Novel
 	{
 		private List<StoryObject> story;
-		private Engine engine;
+		private EngineControl engine;
 
-		public Novel(Engine e)
+		public Novel(EngineControl e)
 		{
 			engine = e;
 			Init();

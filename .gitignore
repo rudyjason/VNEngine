@@ -1,6 +1,8 @@
 
 \.vs
 
-VNEngine/obj/Debug/
+VNEngine/obj/
 
 packages/
+
+VNEngine/bin/
