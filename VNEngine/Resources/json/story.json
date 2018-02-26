@@ -1,0 +1,26 @@
+[
+    {
+      "chr": "p1",
+      "txt": "What is up, mah boi?! Here's yo boi new update"
+    },
+    {
+      "chr": "p2",
+      "txt": "Not much, how are you doing?"
+    },
+    {
+      "chr": "p1",
+      "txt": "Chillin."
+    },
+    {
+      "chr": "",
+      "txt": "..."
+    },
+    {
+      "chr": "p1",
+      "txt": "So any plans for tomorrow?"
+    },
+    {
+      "chr": "p2",
+      "txt": "Nope..."
+    }
+]
