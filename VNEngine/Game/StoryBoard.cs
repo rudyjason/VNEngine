@@ -30,7 +30,7 @@ namespace VNEngine
 		public override void Draw(Graphics g)
 		{
 			g.DrawRectangle(textPen, outlineBox);
-			g.DrawString(fullStory[currentStoryIndex].GetText(), new Font(FontFamily.GenericMonospace, Settings.TEXT_SIZE), Brushes.Blue, textBox);
+			g.DrawString(currentStory.GetText(), new Font(FontFamily.GenericMonospace, Settings.TEXT_SIZE), Brushes.Blue, textBox);
 		}
 
 		public override void Init()
@@ -65,6 +65,8 @@ namespace VNEngine
 				if (currentStoryIndex < fullStory.Count - 1)
 				{
 					currentStoryIndex++;
+					currentStory = fullStory[currentStoryIndex];
+					runStoryElements();
 					canContinueStory = false;
 					storyTimer.Start();
 				}
@@ -78,6 +80,10 @@ namespace VNEngine
 				canContinueStory = true;
 				storyTimer.Reset();
 			}
+		}
+
+		private void runStoryElements() {
+
 		}
 
 		public override void Update()

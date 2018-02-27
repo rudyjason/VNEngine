@@ -21,6 +21,8 @@ namespace VNEngine.Engine
 
 		int count;
 
+		Graphics deferredImage;
+
 		Stopwatch sw;
 		Stopwatch sw2;
 
@@ -60,12 +62,15 @@ namespace VNEngine.Engine
 				{
 					count++;
 					sw.Restart();
-					displayGraphics.Clear(Color.Black);
+					var bmp = new Bitmap(Settings.SCREEN_WIDTH, Settings.SCREEN_HEIGHT);
+					deferredImage = Graphics.FromImage(bmp);
 					foreach (GameObject go in gameObjects)
 					{
 						go.Update();
-						go.Draw(displayGraphics);
+						go.Draw(deferredImage);
 					}
+
+					display.setImageToRender(bmp);
 				}
 				else
 				{
