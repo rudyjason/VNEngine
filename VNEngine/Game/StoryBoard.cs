@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VNEngine.Engine;
 
-namespace VNEngine
+namespace VNEngine.Game
 {
 	public class StoryBoard : GameObject
 	{
@@ -19,6 +19,9 @@ namespace VNEngine
 		private Rectangle textBox;
 		private short currentStoryIndex;
 		private bool canContinueStory;
+		private Dictionary<string, Character> characters;
+
+		int test = 0;
 
 		private Stopwatch storyTimer;
 
@@ -29,6 +32,13 @@ namespace VNEngine
 
 		public override void Draw(Graphics g)
 		{
+			//Draw characters
+			foreach(string key in characters.Keys)
+			{
+				characters[key].Draw(g);
+			}
+
+			//Draw text
 			g.FillRectangle(Brushes.LightGray, outlineBox);
 			g.DrawString(currentStory.GetScrollingText(), new Font(FontFamily.GenericMonospace, Settings.TEXT_SIZE), Brushes.Blue, textBox);
 		}
@@ -36,12 +46,15 @@ namespace VNEngine
 		public override void Init()
 		{
 			currentStoryIndex = 0;
-			currentStory = fullStory[currentStoryIndex];
+			characters = new Dictionary<string, Character>();
 			canContinueStory = true;
 			storyTimer = new Stopwatch();
 			textPen = new Pen(Color.White);
 			outlineBox = new Rectangle(20, (int)(Settings.SCREEN_HEIGHT * 0.8), (Settings.SCREEN_WIDTH - 40), (int)(Settings.SCREEN_HEIGHT * 0.2 - 20));
 			textBox = new Rectangle(40, (int)(Settings.SCREEN_HEIGHT * 0.8 + 20), (Settings.SCREEN_WIDTH - 80), (int)(Settings.SCREEN_HEIGHT * 0.2 - 40));
+
+			currentStory = fullStory[currentStoryIndex];
+			runStoryElements();
 		}
 
 		public override void HandleInput(Keys key)
@@ -57,7 +70,7 @@ namespace VNEngine
 		{
 			if (storyTimer.ElapsedMilliseconds > 100)
 			{
-				//canContinueStory = true;
+				canContinueStory = true;
 				storyTimer.Reset();
 			}
 
@@ -69,7 +82,6 @@ namespace VNEngine
 					currentStory = fullStory[currentStoryIndex];
 					runStoryElements();
 					canContinueStory = false;
-					storyTimer.Start();
 				}
 				else
 				{
@@ -78,13 +90,45 @@ namespace VNEngine
 			} 
 		}
 
-		private void runStoryElements() {
+		private void runStoryElements() 
+		{
+			string c_char = currentStory.chr;
 
+			foreach(string key in characters.Keys)
+			{
+				characters[key].SetActive(false);
+			}
+
+			if(c_char == "")
+			{
+				return;
+			}
+
+			if(characters.ContainsKey(c_char))
+			{
+				characters[c_char].SetActive(true);
+			}
+			else
+			{
+				characters.Add(c_char, new Character(Settings.CHARACTER_IMAGE_FOLDER + c_char + Settings.CHARACTER_IMAGE_EXTENSION));
+
+				characters[c_char].SetCharacterPosition(100, 200); 
+				if (test == 1)
+				{
+					characters[c_char].SetCharacterPosition(800, 200);
+
+				}
+				test++;
+				characters[c_char].SetActive(true);
+			}
 		}
 
 		public override void Update()
 		{
-			canContinueStory = currentStory.TextDone();
+			if (currentStory.TextDone() && !storyTimer.IsRunning)
+			{
+				storyTimer.Start();
+			}
 		}
 	}
 }
