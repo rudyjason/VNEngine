@@ -29,13 +29,14 @@ namespace VNEngine
 
 		public override void Draw(Graphics g)
 		{
-			g.DrawRectangle(textPen, outlineBox);
+			g.FillRectangle(Brushes.LightGray, outlineBox);
 			g.DrawString(currentStory.GetText(), new Font(FontFamily.GenericMonospace, Settings.TEXT_SIZE), Brushes.Blue, textBox);
 		}
 
 		public override void Init()
 		{
 			currentStoryIndex = 0;
+			currentStory = fullStory[currentStoryIndex];
 			canContinueStory = true;
 			storyTimer = new Stopwatch();
 			textPen = new Pen(Color.White);
@@ -75,11 +76,6 @@ namespace VNEngine
 					Debug.WriteLine("STORY OVER");
 				}
 			} 
-			else
-			{
-				canContinueStory = true;
-				storyTimer.Reset();
-			}
 		}
 
 		private void runStoryElements() {

@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VNEngine.Engine;
 
 namespace VNEngine
 {
@@ -14,6 +17,7 @@ namespace VNEngine
 	{
 		private Bitmap imageToRender;
 		private bool newRenderImage;
+		private EngineControl engine;
 		
 		public MainForm()
 		{
@@ -25,21 +29,40 @@ namespace VNEngine
 		protected override void OnKeyDown(KeyEventArgs e)
 		{
 			base.OnKeyDown(e);
-
+			if(engine != null)
+			{
+				engine.ReceiveInput(e.KeyCode, true);
+			}
 		}
 
+		protected override void OnKeyUp(KeyEventArgs e)
+		{
+			base.OnKeyUp(e);
+			if (engine != null)
+			{
+				engine.ReceiveInput(e.KeyCode, false);
+			}
+		}
 		public void setImageToRender(Bitmap bmp)
 		{
 			newRenderImage = true;
-			imageToRender = bmp;
+			imageToRender = bmp; 
+			if (InvokeRequired)
+			{
+				this.Invoke(new Action(() => Refresh()));
+				return;
+			}
 		}
 
-		private void onPaint(object sender, PaintEventArgs e) {
-			if(newRenderImage)
-			{
-				e.Graphics.Clear(Color.Black);
-				e.Graphics.DrawImage(imageToRender, 0, 0);
-			}
+		public void setEngine(EngineControl e)
+		{
+			engine = e;
+		}
+
+		private void onPaint(object sender, PaintEventArgs e) 
+		{
+			e.Graphics.Clear(Color.Black);
+			e.Graphics.DrawImage(imageToRender, 0, 0);
 		}
 	}
 }

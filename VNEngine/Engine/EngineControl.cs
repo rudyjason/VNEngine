@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace VNEngine.Engine
 {
@@ -15,6 +16,7 @@ namespace VNEngine.Engine
 		MainForm display;
 		Graphics displayGraphics;
 		Thread renderThread;
+		Dictionary<Keys, bool> keyDict;
 
 		private short frameDuration;
 		private bool gameRunning;
@@ -31,10 +33,12 @@ namespace VNEngine.Engine
 			Init();
 		}
 
-		public void Init() 
+		public void Init()
 		{
+			display.setEngine(this);
 			displayGraphics = display.CreateGraphics();
 			gameObjects = new List<GameObject>();
+			keyDict = new Dictionary<Keys, bool>();
 
 			sw = new Stopwatch();
 			sw.Start();
@@ -49,8 +53,47 @@ namespace VNEngine.Engine
 			renderThread.Start();
 		}
 
+		public void ReceiveInput(Keys keyCode, bool down)
+		{
+			if(!keyDict.ContainsKey(keyCode))
+			{
+				keyDict.Add(keyCode, down);
+			} else {
+				keyDict[keyCode] = down;
+			}
+		}
+
+		private void HandleInput()
+		{
+			try
+			{
+				foreach(Keys key in keyDict.Keys)
+				{
+					if(keyDict[key])
+					{
+						foreach (GameObject go in gameObjects)
+						{
+							go.HandleInput(key);
+						}
+					}
+				}
+			} catch (Exception e) {
+				//
+			}
+
+		}
+
 		public void AddToGame(GameObject go) {
 			gameObjects.Add(go);
+		}
+
+		public void Update()
+		{
+			HandleInput();
+			foreach(GameObject go in gameObjects)
+			{
+				go.Update();
+			}
 		}
 
 		public void Render()
@@ -64,9 +107,9 @@ namespace VNEngine.Engine
 					sw.Restart();
 					var bmp = new Bitmap(Settings.SCREEN_WIDTH, Settings.SCREEN_HEIGHT);
 					deferredImage = Graphics.FromImage(bmp);
+					Update();
 					foreach (GameObject go in gameObjects)
 					{
-						go.Update();
 						go.Draw(deferredImage);
 					}
 
