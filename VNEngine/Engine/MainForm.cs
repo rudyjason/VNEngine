@@ -26,6 +26,12 @@ namespace VNEngine
 			this.Paint += onPaint;
 		}
 
+		protected override void OnClosing(CancelEventArgs e)
+		{
+			base.OnClosing(e);
+			engine.Stop();
+		}
+
 		protected override void OnKeyDown(KeyEventArgs e)
 		{
 			base.OnKeyDown(e);
@@ -49,8 +55,7 @@ namespace VNEngine
 			imageToRender = bmp; 
 			if (InvokeRequired)
 			{
-				this.Invoke(new Action(() => Refresh()));
-				return;
+				Invoke(new Action(() => Refresh()));
 			}
 		}
 

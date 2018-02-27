@@ -30,7 +30,7 @@ namespace VNEngine
 		public override void Draw(Graphics g)
 		{
 			g.FillRectangle(Brushes.LightGray, outlineBox);
-			g.DrawString(currentStory.GetText(), new Font(FontFamily.GenericMonospace, Settings.TEXT_SIZE), Brushes.Blue, textBox);
+			g.DrawString(currentStory.GetScrollingText(), new Font(FontFamily.GenericMonospace, Settings.TEXT_SIZE), Brushes.Blue, textBox);
 		}
 
 		public override void Init()
@@ -55,9 +55,9 @@ namespace VNEngine
 
 		public void TellStory()
 		{
-			if (storyTimer.ElapsedMilliseconds > 1000)
+			if (storyTimer.ElapsedMilliseconds > 100)
 			{
-				canContinueStory = true;
+				//canContinueStory = true;
 				storyTimer.Reset();
 			}
 
@@ -84,6 +84,7 @@ namespace VNEngine
 
 		public override void Update()
 		{
+			canContinueStory = currentStory.TextDone();
 		}
 	}
 }

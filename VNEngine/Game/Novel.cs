@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VNEngine.Engine;
+using VNEngine.Game;
 
 namespace VNEngine
 {
