@@ -1,26 +1,77 @@
 [
     {
-      "chr": "p1",
-      "txt": "What is up, mah boi?! Here's yo boi p1"
+      "bg": "Akihabara.png",
+      "pos": "left",
+      "chr": "Pipimi",
+      "txt": "Hi there human, I am Pi- pi- mi."
     },
     {
-      "chr": "p2",
-      "txt": "Not much, how are you doing?"
+      "pos": "right",
+      "chr": "Popuko",
+      "txt": "And I am Popuko!"
     },
     {
-      "chr": "p1",
-      "txt": "Chillin."
+      "exit": ["Pipimi","Popuko"],
+      "pos": "middle",
+      "chr": "Popuko_and_Pipimi",
+      "txt": "Together, we are Pop Team Epic!"
     },
     {
-      "chr": "",
+      "exit": ["Popuko_and_Pipimi"],
+      "pos": "right",
+      "chr": "Shadow",
       "txt": "..."
     },
     {
-      "chr": "p1",
-      "txt": "So any plans for tomorrow?"
+      "pos": "left",
+      "chr": "Popuko_and_pipimi",
+      "txt": "WHO IS THAT"
     },
     {
-      "chr": "p2",
-      "txt": "Nope..."
+      "pos": "right",
+      "chr": "Shadow",
+      "txt": "It is I..."
+    },
+    {
+      "pos": "right",
+      "chr": "Subculture_Woman",
+      "txt": "Retarou Chouhekikou! ..."
+    },
+    {
+      "pos": "right",
+      "chr": "Retarou_Choihekikou",
+      "txt": "NOT JUST Subculture Woman!!!"
+    },
+    {
+      "pos": "right",
+      "chr": "Subculture_Woman_Absolutely_Nailing_It_Man",
+      "txt": "My full name is Subculture Woman Absolutely Nailing It Man..."
+    },
+    {
+      "pos": "left",
+      "chr": "Popuko_and_Pipimi",
+      "txt": "..."
+    },
+    {
+      "exit": ["Popuko_and_Pipimi"],
+      "pos": "left",
+      "chr": "Popuko_and_pipimi_fu",
+      "txt": "We don't care"
+    },
+    {
+      "pos": "right"      ,
+      "chr": "Retarou_Chouhekikou",
+      "txt": "FUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
+    },
+    {
+      "bg": "Gashapon",
+      "pos": "left" ,
+      "chr": "Pipimi",
+      "txt": "Why are we here?"
+    },
+    {
+      "pos": "right",
+      "chr": "Subculture_Woman_Absolutely_Nailing_It_Man",
+      "txt": "I need my gasha..."
     }
 ]

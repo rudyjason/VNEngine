@@ -1,0 +1,38 @@
+[
+    {
+      "chr": "p1",
+      "txt": "What is up, mah boi?! Here's yo boi p1",
+	  "pos":"right"
+    },
+    {
+      "chr": "p2",
+      "txt": "Not much, how are you doing?",
+	  "pos":"left"
+    },
+    {
+      "chr": "p1",
+      "txt": "Chillin."
+    },
+	{
+		"bg": "bg_2"
+	},
+    {
+      "chr": "",
+      "txt": "..."
+    },
+    {
+      "chr": "p1",
+      "txt": "So any plans for tomorrow?"
+    },
+    {
+      "chr": "p2",
+      "txt": "Nope..."
+    },
+	{
+		"exit": ["p1", "p2"]
+	},
+    {
+      "chr": "",
+      "txt": "..."
+    }
+]

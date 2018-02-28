@@ -29,7 +29,11 @@ namespace VNEngine
 				string json = r.ReadToEnd();
 				story = JsonConvert.DeserializeObject<List<StoryObject>>(json);
 			}
-			engine.AddToGame(new StoryBoard(story));
+            var storyBoard = new StoryBoard(story);
+
+            engine.AddToGame(storyBoard);
+            storyBoard.SetEngine(engine);
+
 		}
 	}
 }

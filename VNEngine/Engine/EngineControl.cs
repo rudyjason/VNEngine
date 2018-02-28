@@ -16,7 +16,6 @@ namespace VNEngine.Engine
 	{
 		List<GameObject> gameObjects;
 		MainForm display;
-		Graphics displayGraphics;
 		Thread renderThread;
 		Dictionary<Keys, bool> keyDict;
 
@@ -31,8 +30,9 @@ namespace VNEngine.Engine
 		Stopwatch sw2;
 
 		private Bitmap background;
+        private Bitmap backgroundCache;
 
-		public EngineControl(MainForm _display) {
+        public EngineControl(MainForm _display) {
 			display = _display;
 			Init();
 		}
@@ -46,11 +46,11 @@ namespace VNEngine.Engine
 		public void Init()
 		{
 			display.setEngine(this);
-			displayGraphics = display.CreateGraphics();
 			gameObjects = new List<GameObject>();
 			keyDict = new Dictionary<Keys, bool>();
 
-			background = ResizeImage(Image.FromFile(Settings.BACKGROUND_IMAGE_LOCATION), Settings.SCREEN_WIDTH, Settings.SCREEN_HEIGHT);
+			background = ResizeImage(Image.FromFile(Settings.BACKGROUND_IMAGE_LOCATION + Settings.BACKGROUND_IMAGE_DEFAULT), Settings.SCREEN_WIDTH, Settings.SCREEN_HEIGHT);
+            backgroundCache = (Bitmap)background.Clone();
 
 			sw = new Stopwatch();
 			sw.Start();
@@ -105,10 +105,10 @@ namespace VNEngine.Engine
 			foreach(GameObject go in gameObjects)
 			{
 				go.Update();
-			}
-		}
+            }
+        }
 
-		public void Render()
+        public void Render()
 		{
 			while(gameRunning)
 			{
@@ -117,7 +117,7 @@ namespace VNEngine.Engine
 				{
 					count++;
 					sw.Restart();
-					//var bmp = new Bitmap(Settings.SCREEN_WIDTH, Settings.SCREEN_HEIGHT);
+                    //var bmp = new Bitmap(Settings.SCREEN_WIDTH, Settings.SCREEN_HEIGHT);
 					deferredImage = Graphics.FromImage(background);
 					//deferredImage.ScaleTransform((float)background.Width / Settings.SCREEN_WIDTH, (float)background.Height / Settings.SCREEN_HEIGHT);
 					Update();
@@ -127,8 +127,10 @@ namespace VNEngine.Engine
 					}
 
 					display.setImageToRender(background);
-					//bmp.Dispose();
-				}
+                    background.Dispose();
+                    background = (Bitmap)backgroundCache.Clone();
+                    //bmp.Dispose();
+                }
 				else
 				{
 					Thread.Sleep(sleepyTime);
@@ -142,6 +144,11 @@ namespace VNEngine.Engine
 				}
 			}
 		}
+
+        public void SetBackground(string file_location)
+        {
+            backgroundCache = ResizeImage(Image.FromFile(Settings.BACKGROUND_IMAGE_LOCATION + file_location + Settings.BACKGROUND_IMAGE_EXTENSION), Settings.SCREEN_WIDTH, Settings.SCREEN_HEIGHT);
+        }
 
 		/// <summary>
 		/// Resize the image to the specified width and height.

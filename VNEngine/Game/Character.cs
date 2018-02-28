@@ -16,6 +16,8 @@ namespace VNEngine.Game
 		private Bitmap darkImage;
 		private Rectangle charRect;
 
+        private bool removed;
+
 		private bool isActive;
 
 		public Character(string s)
@@ -26,6 +28,10 @@ namespace VNEngine.Game
 
 		public override void Draw(Graphics g)
 		{
+            if(removed)
+            {
+                return;
+            }
 			if(isActive)
 			{
 				g.DrawImage(image, charRect);
@@ -39,6 +45,7 @@ namespace VNEngine.Game
 		public override void Init()
 		{
 			isActive = false;
+            removed = false;
 			image = (Bitmap)Image.FromFile(source);
 			darkImage = AdjustBrightness(image, 0.5f);
 			charRect = new Rectangle(0, 0, Settings.CHARACTER_WIDTH, Settings.CHARACTER_HEIGHT);
@@ -55,7 +62,13 @@ namespace VNEngine.Game
 			isActive = active;
 		}
 
-		public override void Update()
+        public void Remove()
+        {
+            removed = true;
+        }
+
+
+        public override void Update()
 		{
 		}
 

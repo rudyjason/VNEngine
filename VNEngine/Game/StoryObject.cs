@@ -4,8 +4,11 @@
 	{
 		public string chr;
 		public string txt;
+        public string pos;
+        public string bg;
+        public string[] exit;
 
-		private string scrollingText;
+        private string scrollingText;
 		private int scrollingIndex;
 
 		public StoryObject() {
@@ -34,7 +37,9 @@
 
 		public bool TextDone()
 		{
-			return scrollingIndex >= txt.Length;
+            if (txt == null)
+                return true;
+			 return scrollingIndex >= txt.Length;
 		}
 	}
 }
