@@ -24,7 +24,7 @@
     },
     {
       "pos": "left",
-      "chr": "Popuko_and_pipimi",
+      "chr": "Popuko_and_Pipimi",
       "txt": "WHO IS THAT"
     },
     {
@@ -33,16 +33,19 @@
       "txt": "It is I..."
     },
     {
+      "exit": ["Shadow"],
       "pos": "right",
       "chr": "Subculture_Woman",
       "txt": "Retarou Chouhekikou! ..."
     },
     {
+      "exit": ["Subculture_Woman"],
       "pos": "right",
-      "chr": "Retarou_Choihekikou",
+      "chr": "Retarou_Chouhekikou",
       "txt": "NOT JUST Subculture Woman!!!"
     },
     {
+      "exit": ["Retarou_Chouhekikou"],
       "pos": "right",
       "chr": "Subculture_Woman_Absolutely_Nailing_It_Man",
       "txt": "My full name is Subculture Woman Absolutely Nailing It Man..."
@@ -59,11 +62,13 @@
       "txt": "We don't care"
     },
     {
+      "exit": ["Subculture_Woman_Absolutely_Nailing_It_Man"],
       "pos": "right"      ,
       "chr": "Retarou_Chouhekikou",
       "txt": "FUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
     },
     {
+      "exit": ["Popuko_and_pipimi_fu"],
       "bg": "Gashapon",
       "pos": "left" ,
       "chr": "Pipimi",

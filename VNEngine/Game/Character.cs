@@ -48,7 +48,9 @@ namespace VNEngine.Game
             removed = false;
 			image = (Bitmap)Image.FromFile(source);
 			darkImage = AdjustBrightness(image, 0.5f);
-			charRect = new Rectangle(0, 0, Settings.CHARACTER_WIDTH, Settings.CHARACTER_HEIGHT);
+			float widthAdjust = Settings.CHARACTER_HEIGHT / (float)image.Height;
+			//charRect = new Rectangle(0, 0, Settings.CHARACTER_WIDTH, Settings.CHARACTER_HEIGHT);
+			charRect = new Rectangle(0, 0, (int)(widthAdjust * image.Width), Settings.CHARACTER_HEIGHT);
 		}
 
 		public void SetCharacterPosition(int x, int y)
