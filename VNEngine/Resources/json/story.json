@@ -75,6 +75,7 @@
       "txt": "Why are we here?"
     },
     {
+      "exit": ["Retarou_Chouhekikou"],
       "pos": "right",
       "chr": "Subculture_Woman_Absolutely_Nailing_It_Man",
       "txt": "I need my gasha..."
