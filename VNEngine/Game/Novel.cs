@@ -31,7 +31,7 @@ namespace VNEngine
 			}
             var storyBoard = new StoryBoard(story);
 
-            engine.AddToGame(storyBoard);
+			engine.AddToGame(storyBoard);
             storyBoard.SetEngine(engine);
 
 		}

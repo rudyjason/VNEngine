@@ -1,0 +1,22 @@
+{
+  "SCREEN_WIDTH": "1280",
+  "SCREEN_HEIGHT": "720",
+  
+  "MAX_FPS": "60",
+  
+  "TEXT_SIZE": "10",
+  
+  "BACKGROUND_IMAGE_LOCATION": "./Resources/images/bg/",
+  "BACKGROUND_IMAGE_DEFAULT": "test_bg.png",
+  "BACKGROUND_IMAGE_EXTENSION": ".png",
+  
+  "CHARACTER_IMAGE_FOLDER": "./Resources/images/char/",
+  "CHARACTER_IMAGE_EXTENSION": ".png",
+  
+  "CHARACTER_WIDTH": "200",
+  "CHARACTER_HEIGHT": "500",
+  
+  "CHARACTER_POS_LEFT": "0",
+  "CHARACTER_POS_MIDDLE": "400",
+  "CHARACTER_POS_RIGHT": "800"
+}

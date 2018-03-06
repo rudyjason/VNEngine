@@ -37,8 +37,8 @@
 			this.ClientSize = new System.Drawing.Size(1264, 681);
 			this.DoubleBuffered = true;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-			this.Name = "MainForm";
-			this.Text = "Form1";
+			this.Name = "VNEngine";
+			this.Text = "VNEngine";
 			this.ResumeLayout(false);
 
 		}

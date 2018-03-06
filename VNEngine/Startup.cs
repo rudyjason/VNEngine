@@ -19,8 +19,15 @@ namespace VNEngine
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			MainForm form = new MainForm();
 			Environment.CurrentDirectory = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "");
+
+			using (StreamReader r = new StreamReader(Environment.CurrentDirectory + "/Resources/settings/settings.json"))
+			{
+				string json = r.ReadToEnd();
+				Settings.ReadFromJson(json);
+			}
+
+			MainForm form = new MainForm();
 			EngineControl engine = new EngineControl(form);
 			//Game testGame = new Game(engine);
 			Novel testNovel = new Novel(engine);

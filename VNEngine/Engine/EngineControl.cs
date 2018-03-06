@@ -59,7 +59,7 @@ namespace VNEngine.Engine
 
 			gameRunning = true;
 
-			frameDuration = 1000 / Settings.MAX_FPS;
+			frameDuration = (short)(1000 / Settings.MAX_FPS);
 
 			renderThread = new Thread(new ThreadStart(Render));
 			renderThread.Start();

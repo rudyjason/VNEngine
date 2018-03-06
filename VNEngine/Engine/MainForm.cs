@@ -23,6 +23,7 @@ namespace VNEngine
 		{
 			InitializeComponent();
 			newRenderImage = false;
+			this.Size = new Size(Settings.SCREEN_WIDTH, Settings.SCREEN_HEIGHT);
 			this.Paint += onPaint;
 		}
 
@@ -64,7 +65,7 @@ namespace VNEngine
 			engine = e;
 		}
 
-		private void onPaint(object sender, PaintEventArgs e) 
+		private void onPaint(object sender, PaintEventArgs e)
 		{
 			e.Graphics.Clear(Color.Black);
 			e.Graphics.DrawImage(imageToRender, 0, 0);
